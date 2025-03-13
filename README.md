@@ -1,5 +1,5 @@
 1. Build
-docker build -f Dockerfile.16 -t postgres-ssl:16 .
+docker build --platform linux/amd64 -f Dockerfile.16 -t postgres-ssl:16 .
 
 2. (docker login to longlake ghcr with personal access token from github)
 ```
