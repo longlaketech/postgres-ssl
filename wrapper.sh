@@ -34,6 +34,21 @@ if [ -f "$POSTGRES_CONF_FILE" ] && [ ! -f "$SSL_DIR/server.crt" ]; then
   bash "$INIT_SSL_SCRIPT"
 fi
 
+# Apply additional PostgreSQL configuration parameters if provided via environment variables
+if [ -f "$POSTGRES_CONF_FILE" ]; then
+  # Configure max_wal_size if provided
+  if [ ! -z "$MAX_WAL_SIZE" ]; then
+    echo "Setting max_wal_size = $MAX_WAL_SIZE"
+    echo "max_wal_size = '$MAX_WAL_SIZE'" >> "$POSTGRES_CONF_FILE"
+  fi
+  
+  # Configure checkpoint_timeout if provided
+  if [ ! -z "$CHECKPOINT_TIMEOUT" ]; then
+    echo "Setting checkpoint_timeout = $CHECKPOINT_TIMEOUT"
+    echo "checkpoint_timeout = '$CHECKPOINT_TIMEOUT'" >> "$POSTGRES_CONF_FILE"
+  fi
+fi
+
 # unset PGHOST to force psql to use Unix socket path
 # this is specific to Railway and allows
 # us to use PGHOST after the init
