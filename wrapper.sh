@@ -47,6 +47,66 @@ if [ -f "$POSTGRES_CONF_FILE" ]; then
     echo "Setting checkpoint_timeout = $CHECKPOINT_TIMEOUT"
     echo "checkpoint_timeout = '$CHECKPOINT_TIMEOUT'" >> "$POSTGRES_CONF_FILE"
   fi
+  
+  # Configure max_connections if provided
+  if [ ! -z "$MAX_CONNECTIONS" ]; then
+    echo "Setting max_connections = $MAX_CONNECTIONS"
+    echo "max_connections = '$MAX_CONNECTIONS'" >> "$POSTGRES_CONF_FILE"
+  fi
+  
+  # Configure shared_buffers if provided
+  if [ ! -z "$SHARED_BUFFERS" ]; then
+    echo "Setting shared_buffers = $SHARED_BUFFERS"
+    echo "shared_buffers = '$SHARED_BUFFERS'" >> "$POSTGRES_CONF_FILE"
+  fi
+  
+  # Configure effective_cache_size if provided
+  if [ ! -z "$EFFECTIVE_CACHE_SIZE" ]; then
+    echo "Setting effective_cache_size = $EFFECTIVE_CACHE_SIZE"
+    echo "effective_cache_size = '$EFFECTIVE_CACHE_SIZE'" >> "$POSTGRES_CONF_FILE"
+  fi
+  
+  # Configure work_mem if provided
+  if [ ! -z "$WORK_MEM" ]; then
+    echo "Setting work_mem = $WORK_MEM"
+    echo "work_mem = '$WORK_MEM'" >> "$POSTGRES_CONF_FILE"
+  fi
+  
+  # Configure idle_in_transaction_session_timeout if provided
+  if [ ! -z "$IDLE_IN_TRANSACTION_SESSION_TIMEOUT" ]; then
+    echo "Setting idle_in_transaction_session_timeout = $IDLE_IN_TRANSACTION_SESSION_TIMEOUT"
+    echo "idle_in_transaction_session_timeout = '$IDLE_IN_TRANSACTION_SESSION_TIMEOUT'" >> "$POSTGRES_CONF_FILE"
+  fi
+  
+  # Configure statement_timeout if provided
+  if [ ! -z "$STATEMENT_TIMEOUT" ]; then
+    echo "Setting statement_timeout = $STATEMENT_TIMEOUT"
+    echo "statement_timeout = '$STATEMENT_TIMEOUT'" >> "$POSTGRES_CONF_FILE"
+  fi
+  
+  # Configure autovacuum_max_workers if provided
+  if [ ! -z "$AUTOVACUUM_MAX_WORKERS" ]; then
+    echo "Setting autovacuum_max_workers = $AUTOVACUUM_MAX_WORKERS"
+    echo "autovacuum_max_workers = '$AUTOVACUUM_MAX_WORKERS'" >> "$POSTGRES_CONF_FILE"
+  fi
+  
+  # Configure autovacuum_naptime if provided
+  if [ ! -z "$AUTOVACUUM_NAPTIME" ]; then
+    echo "Setting autovacuum_naptime = $AUTOVACUUM_NAPTIME"
+    echo "autovacuum_naptime = '$AUTOVACUUM_NAPTIME'" >> "$POSTGRES_CONF_FILE"
+  fi
+  
+  # Configure maintenance_work_mem if provided
+  if [ ! -z "$MAINTENANCE_WORK_MEM" ]; then
+    echo "Setting maintenance_work_mem = $MAINTENANCE_WORK_MEM"
+    echo "maintenance_work_mem = '$MAINTENANCE_WORK_MEM'" >> "$POSTGRES_CONF_FILE"
+  fi
+  
+  # Configure JIT if provided
+  if [ ! -z "$JIT" ]; then
+    echo "Setting jit = $JIT"
+    echo "jit = $JIT" >> "$POSTGRES_CONF_FILE"
+  fi
 fi
 
 # unset PGHOST to force psql to use Unix socket path
